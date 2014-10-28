@@ -1,0 +1,13 @@
+C:\Users\Jeremy\Documents\Visual Studio 2010\Projects\SeniorTowerDefense\GameStateManagementSample\bin\x86\Debug\Content\background.xnb
+C:\Users\Jeremy\Documents\Visual Studio 2010\Projects\SeniorTowerDefense\GameStateManagementSample\bin\x86\Debug\Content\blank.xnb
+C:\Users\Jeremy\Documents\Visual Studio 2010\Projects\SeniorTowerDefense\GameStateManagementSample\bin\x86\Debug\Content\gradient.xnb
+C:\Users\Jeremy\Documents\Visual Studio 2010\Projects\SeniorTowerDefense\GameStateManagementSample\bin\x86\Debug\Content\menufont.xnb
+C:\Users\Jeremy\Documents\Visual Studio 2010\Projects\SeniorTowerDefense\GameStateManagementSample\bin\x86\Debug\Content\gamefont.xnb
+C:\Users\Jeremy\Documents\Visual Studio 2010\Projects\SeniorTowerDefense\GameStateManagementSample\bin\x86\Debug\GameStateManagementSample.exe
+C:\Users\Jeremy\Documents\Visual Studio 2010\Projects\SeniorTowerDefense\GameStateManagementSample\bin\x86\Debug\GameStateManagementSample.pdb
+C:\Users\Jeremy\Documents\Visual Studio 2010\Projects\SeniorTowerDefense\GameStateManagementSample\bin\x86\Debug\GameStateManagement.dll
+C:\Users\Jeremy\Documents\Visual Studio 2010\Projects\SeniorTowerDefense\GameStateManagementSample\bin\x86\Debug\GameStateManagement.pdb
+C:\Users\Jeremy\Documents\Visual Studio 2010\Projects\SeniorTowerDefense\GameStateManagementSample\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Jeremy\Documents\Visual Studio 2010\Projects\SeniorTowerDefense\GameStateManagementSample\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\Jeremy\Documents\Visual Studio 2010\Projects\SeniorTowerDefense\GameStateManagementSample\obj\x86\Debug\GameStateManagementSample.exe
+C:\Users\Jeremy\Documents\Visual Studio 2010\Projects\SeniorTowerDefense\GameStateManagementSample\obj\x86\Debug\GameStateManagementSample.pdb

@@ -1,0 +1,6 @@
+C:\Users\Jeremy\Documents\Visual Studio 2010\Projects\SeniorTowerDefense\GameStateManagement\bin\x86\Debug\GameStateManagement.dll
+C:\Users\Jeremy\Documents\Visual Studio 2010\Projects\SeniorTowerDefense\GameStateManagement\bin\x86\Debug\GameStateManagement.pdb
+C:\Users\Jeremy\Documents\Visual Studio 2010\Projects\SeniorTowerDefense\GameStateManagement\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Jeremy\Documents\Visual Studio 2010\Projects\SeniorTowerDefense\GameStateManagement\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\Jeremy\Documents\Visual Studio 2010\Projects\SeniorTowerDefense\GameStateManagement\obj\x86\Debug\GameStateManagement.dll
+C:\Users\Jeremy\Documents\Visual Studio 2010\Projects\SeniorTowerDefense\GameStateManagement\obj\x86\Debug\GameStateManagement.pdb
