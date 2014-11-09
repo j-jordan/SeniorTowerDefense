@@ -12,7 +12,7 @@ using System;
 using Microsoft.Xna.Framework;
 #endregion
 
-namespace GameStateManagementSample
+namespace SeniorTowerDefense
 {
     /// <summary>
     /// Custom event argument which includes the index of the player who

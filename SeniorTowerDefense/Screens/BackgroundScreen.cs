@@ -15,7 +15,7 @@ using Microsoft.Xna.Framework.Graphics;
 using GameStateManagement;
 #endregion
 
-namespace GameStateManagementSample
+namespace SeniorTowerDefense
 {
     /// <summary>
     /// The background screen sits behind all the other menu screens.

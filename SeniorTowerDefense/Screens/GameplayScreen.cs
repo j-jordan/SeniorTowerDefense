@@ -17,7 +17,7 @@ using Microsoft.Xna.Framework.Input;
 using GameStateManagement;
 #endregion
 
-namespace GameStateManagementSample
+namespace SeniorTowerDefense
 {
     /// <summary>
     /// This screen implements the actual game logic. It is just a
@@ -75,7 +75,7 @@ namespace GameStateManagementSample
                 // A real game would probably have more content than this sample, so
                 // it would take longer to load. We simulate that by delaying for a
                 // while, giving you a chance to admire the beautiful loading screen.
-                Thread.Sleep(1000);
+               // Thread.Sleep();
 
                 // once the load has finished, we use ResetElapsedTime to tell the game's
                 // timing mechanism that we have just finished a very long frame, and that
@@ -83,22 +83,11 @@ namespace GameStateManagementSample
                 ScreenManager.Game.ResetElapsedTime();
             }
 
-#if WINDOWS_PHONE
-            if (Microsoft.Phone.Shell.PhoneApplicationService.Current.State.ContainsKey("PlayerPosition"))
-            {
-                playerPosition = (Vector2)Microsoft.Phone.Shell.PhoneApplicationService.Current.State["PlayerPosition"];
-                enemyPosition = (Vector2)Microsoft.Phone.Shell.PhoneApplicationService.Current.State["EnemyPosition"];
-            }
-#endif
         }
 
 
         public override void Deactivate()
         {
-#if WINDOWS_PHONE
-            Microsoft.Phone.Shell.PhoneApplicationService.Current.State["PlayerPosition"] = playerPosition;
-            Microsoft.Phone.Shell.PhoneApplicationService.Current.State["EnemyPosition"] = enemyPosition;
-#endif
 
             base.Deactivate();
         }
@@ -110,11 +99,6 @@ namespace GameStateManagementSample
         public override void Unload()
         {
             content.Unload();
-
-#if WINDOWS_PHONE
-            Microsoft.Phone.Shell.PhoneApplicationService.Current.State.Remove("PlayerPosition");
-            Microsoft.Phone.Shell.PhoneApplicationService.Current.State.Remove("EnemyPosition");
-#endif
         }
 
 
@@ -149,10 +133,10 @@ namespace GameStateManagementSample
 
                 // Apply a stabilizing force to stop the enemy moving off the screen.
                 Vector2 targetPosition = new Vector2(
-                    ScreenManager.GraphicsDevice.Viewport.Width / 2 - gameFont.MeasureString("Insert Gameplay Here").X / 2, 
+                    ScreenManager.GraphicsDevice.Viewport.Width / 2 - gameFont.MeasureString("Insert Gameplay Here").X / 2 * random.Next(1,2), 
                     200);
 
-                enemyPosition = Vector2.Lerp(enemyPosition, targetPosition, 0.05f);
+                enemyPosition = Vector2.Lerp(enemyPosition, targetPosition, 0.5f);
 
                 // TODO: this game isn't very fun! You could probably improve
                 // it by inserting something more interesting in this space :-)

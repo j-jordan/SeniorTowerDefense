@@ -16,7 +16,7 @@ using Microsoft.Xna.Framework.Input;
 using GameStateManagement;
 #endregion
 
-namespace GameStateManagementSample
+namespace SeniorTowerDefense
 {
     /// <summary>
     /// A popup message box screen, used to display "are you sure?"

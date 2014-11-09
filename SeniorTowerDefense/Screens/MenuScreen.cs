@@ -17,7 +17,7 @@ using Microsoft.Xna.Framework.Input;
 using GameStateManagement;
 #endregion
 
-namespace GameStateManagementSample
+namespace SeniorTowerDefense
 {
     /// <summary>
     /// Base class for screens that contain a menu of options. The user can

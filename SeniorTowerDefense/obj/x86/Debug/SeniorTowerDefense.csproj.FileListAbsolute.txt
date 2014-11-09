@@ -24,3 +24,4 @@ E:\Users\Grujo\Documents\Senior Game Class\SeniorTowerDefense\SeniorTowerDefense
 E:\Users\Grujo\Documents\Senior Game Class\SeniorTowerDefense\SeniorTowerDefense\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 E:\Users\Grujo\Documents\Senior Game Class\SeniorTowerDefense\SeniorTowerDefense\obj\x86\Debug\GameStateManagementSample.exe
 E:\Users\Grujo\Documents\Senior Game Class\SeniorTowerDefense\SeniorTowerDefense\obj\x86\Debug\GameStateManagementSample.pdb
+E:\Users\Grujo\Documents\Senior Game Class\SeniorTowerDefense\SeniorTowerDefense\bin\x86\Debug\Content\cursor.xnb
