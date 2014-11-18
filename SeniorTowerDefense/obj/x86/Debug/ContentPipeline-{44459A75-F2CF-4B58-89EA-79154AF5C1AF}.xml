@@ -35,7 +35,7 @@
       <Processor>FontDescriptionProcessor</Processor>
       <Options>None</Options>
       <Output>E:\Users\Grujo\Documents\Senior Game Class\SeniorTowerDefense\SeniorTowerDefense\bin\x86\Debug\Content\menufont.xnb</Output>
-      <Time>2014-10-28T17:36:01.6249413-05:00</Time>
+      <Time>2014-11-11T16:10:18.2637365-06:00</Time>
     </Item>
     <Item>
       <Source>gamefont.spritefont</Source>
@@ -54,6 +54,24 @@
       <Options>None</Options>
       <Output>E:\Users\Grujo\Documents\Senior Game Class\SeniorTowerDefense\SeniorTowerDefense\bin\x86\Debug\Content\cursor.xnb</Output>
       <Time>2014-11-08T20:48:43.5702918-06:00</Time>
+    </Item>
+    <Item>
+      <Source>TitleScreenBackground.png</Source>
+      <Name>TitleScreenBackground</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\Users\Grujo\Documents\Senior Game Class\SeniorTowerDefense\SeniorTowerDefense\bin\x86\Debug\Content\TitleScreenBackground.xnb</Output>
+      <Time>2014-11-11T15:58:55.7669299-06:00</Time>
+    </Item>
+    <Item>
+      <Source>basicEnemy.png</Source>
+      <Name>basicEnemy</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\Users\Grujo\Documents\Senior Game Class\SeniorTowerDefense\SeniorTowerDefense\bin\x86\Debug\Content\basicEnemy.xnb</Output>
+      <Time>2014-11-11T18:27:14.4287755-06:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

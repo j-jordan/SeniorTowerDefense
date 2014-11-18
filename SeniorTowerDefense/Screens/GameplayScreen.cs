@@ -31,8 +31,20 @@ namespace SeniorTowerDefense
         ContentManager content;
         SpriteFont gameFont;
 
-        Vector2 playerPosition = new Vector2(100, 100);
-        Vector2 enemyPosition = new Vector2(100, 100);
+        // Cursor
+        Texture2D cursor;
+        Rectangle cursorRect;
+
+        // Mouse        
+        MouseState mouse;
+        MouseState oldMouse;
+
+        //Enemies        
+        Enemy[] enemies;
+        int enemyCount;
+        TimeSpan enemySpawnTime = new TimeSpan(0, 0, 1);
+        TimeSpan countTime;
+        Texture2D basicEnemyTexture;
 
         Random random = new Random();
 
@@ -53,10 +65,17 @@ namespace SeniorTowerDefense
             TransitionOnTime = TimeSpan.FromSeconds(1.5);
             TransitionOffTime = TimeSpan.FromSeconds(0.5);
 
+            cursorRect = new Rectangle(0, 0, 15, 15);
+            
+            //Enemies
+            enemies = new Enemy[100];
+
+
             pauseAction = new InputAction(
                 new Buttons[] { Buttons.Start, Buttons.Back },
                 new Keys[] { Keys.Escape },
                 true);
+
         }
 
 
@@ -71,15 +90,9 @@ namespace SeniorTowerDefense
                     content = new ContentManager(ScreenManager.Game.Services, "Content");
 
                 gameFont = content.Load<SpriteFont>("gamefont");
-
-                // A real game would probably have more content than this sample, so
-                // it would take longer to load. We simulate that by delaying for a
-                // while, giving you a chance to admire the beautiful loading screen.
-               // Thread.Sleep();
-
-                // once the load has finished, we use ResetElapsedTime to tell the game's
-                // timing mechanism that we have just finished a very long frame, and that
-                // it should not try to catch up.
+                cursor = content.Load<Texture2D>("cursor");
+                basicEnemyTexture = content.Load<Texture2D>("basicEnemy");
+               
                 ScreenManager.Game.ResetElapsedTime();
             }
 
@@ -125,21 +138,27 @@ namespace SeniorTowerDefense
 
             if (IsActive)
             {
-                // Apply some random jitter to make the enemy move around.
-                const float randomization = 10;
+                countTime += gameTime.ElapsedGameTime;
 
-                enemyPosition.X += (float)(random.NextDouble() - 0.5) * randomization;
-                enemyPosition.Y += (float)(random.NextDouble() - 0.5) * randomization;
+                if (countTime > enemySpawnTime)
+                {
+                    countTime = TimeSpan.Zero; 
+                    
+                    if(enemyCount < 100)
+                    {
+                        Enemy badGuy = new Enemy(new Vector2(100, 100), new Vector2(500, 500));
+                        enemies[enemyCount] = badGuy;
+                        enemyCount++;
+                    }
+                }
 
-                // Apply a stabilizing force to stop the enemy moving off the screen.
-                Vector2 targetPosition = new Vector2(
-                    ScreenManager.GraphicsDevice.Viewport.Width / 2 - gameFont.MeasureString("Insert Gameplay Here").X / 2 * random.Next(1,2), 
-                    200);
-
-                enemyPosition = Vector2.Lerp(enemyPosition, targetPosition, 0.5f);
-
-                // TODO: this game isn't very fun! You could probably improve
-                // it by inserting something more interesting in this space :-)
+                foreach(Enemy enemy in enemies)
+                {
+                    if(enemy != null)
+                    {
+                        enemy.moveTowardsDestination();
+                    }
+                }
             }
         }
 
@@ -169,49 +188,13 @@ namespace SeniorTowerDefense
             PlayerIndex player;
             if (pauseAction.Evaluate(input, ControllingPlayer, out player) || gamePadDisconnected)
             {
-#if WINDOWS_PHONE
-                ScreenManager.AddScreen(new PhonePauseScreen(), ControllingPlayer);
-#else
                 ScreenManager.AddScreen(new PauseMenuScreen(), ControllingPlayer);
-#endif
             }
             else
             {
-                // Otherwise move the player position.
-                Vector2 movement = Vector2.Zero;
-
-                if (keyboardState.IsKeyDown(Keys.Left))
-                    movement.X--;
-
-                if (keyboardState.IsKeyDown(Keys.Right))
-                    movement.X++;
-
-                if (keyboardState.IsKeyDown(Keys.Up))
-                    movement.Y--;
-
-                if (keyboardState.IsKeyDown(Keys.Down))
-                    movement.Y++;
-
-                Vector2 thumbstick = gamePadState.ThumbSticks.Left;
-
-                movement.X += thumbstick.X;
-                movement.Y -= thumbstick.Y;
-
-                if (input.TouchState.Count > 0)
-                {
-                    Vector2 touchPosition = input.TouchState[0].Position;
-                    Vector2 direction = touchPosition - playerPosition;
-                    direction.Normalize();
-                    movement += direction;
-                }
-
-                if (movement.Length() > 1)
-                    movement.Normalize();
-
-                playerPosition += movement * 8f;
+                cursorFollowMouse();
             }
         }
-
 
         /// <summary>
         /// Draws the gameplay screen.
@@ -220,17 +203,22 @@ namespace SeniorTowerDefense
         {
             // This game has a blue background. Why? Because!
             ScreenManager.GraphicsDevice.Clear(ClearOptions.Target,
-                                               Color.CornflowerBlue, 0, 0);
+                                               Color.Black, 0, 0);
 
             // Our player and enemy are both actually just text strings.
             SpriteBatch spriteBatch = ScreenManager.SpriteBatch;
 
             spriteBatch.Begin();
 
-            spriteBatch.DrawString(gameFont, "// TODO", playerPosition, Color.Green);
+            spriteBatch.Draw(cursor, cursorRect, Color.White);
 
-            spriteBatch.DrawString(gameFont, "Insert Gameplay Here",
-                                   enemyPosition, Color.DarkRed);
+            foreach(Enemy enemy in enemies)
+            {
+                if (enemy != null)
+                {
+                    spriteBatch.Draw(basicEnemyTexture, enemy.Position(), Color.White);
+                }
+            }
 
             spriteBatch.End();
 
@@ -245,5 +233,13 @@ namespace SeniorTowerDefense
 
 
         #endregion
+
+
+        private void cursorFollowMouse()
+        {
+            mouse = Mouse.GetState();
+            cursorRect.X = mouse.X;
+            cursorRect.Y = mouse.Y;
+        }
     }
 }

@@ -8,14 +8,15 @@ using GameStateManagement;
 
 namespace SeniorTowerDefense
 {
-    class GameSetupScreen : GameScreen
+    class GameSetupScreen : MenuScreen
     {
         ContentManager content;
         SpriteFont gameFont;
         InputAction pauseAction;
+
         //Play
-        Vector2 playButtonTextPosition = new Vector2(500,500);
-        Rectangle playButtonRect = new Rectangle(500, 500, 125, 50);
+        Vector2 playButtonTextPosition = new Vector2(1000,650);
+        Rectangle playButtonRect = new Rectangle(1000, 650, 125, 50);
         Texture2D playButtonTexture;
 
         // Cursor
@@ -26,8 +27,44 @@ namespace SeniorTowerDefense
         MouseState mouse;
         MouseState oldMouse;
 
-        public GameSetupScreen()
+        //MenuEntries
+        MenuEntry classMenuEntry;
+        MenuEntry mapMenuEntry;
+        MenuEntry powerLevelMenuEntry;
+        MenuEntry playMenuEntry;
+
+        static string[] classes = { "Peasant", "Engi", "Sayian" };
+        static int currentClass = 0;
+
+        static string[] maps = { "Green Fields", "Rock Outcrop", "Hell" };
+        static int currentMap = 0;
+
+        static int powerLevel = 9001;
+
+       
+        public GameSetupScreen() :
+            base("Setup")
         {
+            //Menu Entries
+            classMenuEntry = new MenuEntry(string.Empty);
+            mapMenuEntry = new MenuEntry(string.Empty);
+            powerLevelMenuEntry = new MenuEntry(string.Empty);
+            playMenuEntry = new MenuEntry(string.Empty);
+
+            SetMenuEntryText();
+
+            //Menu Event Handlers
+            classMenuEntry.Selected += classMenuEntry_Selected;
+            mapMenuEntry.Selected += mapMenuEntry_Selected;
+            powerLevelMenuEntry.Selected += powerLevelMenuEntry_Selected;
+            playMenuEntry.Selected += playMenuEntry_Selected;
+
+            //Add entries to menu
+            MenuEntries.Add(classMenuEntry);
+            MenuEntries.Add(mapMenuEntry);
+            MenuEntries.Add(powerLevelMenuEntry);
+            MenuEntries.Add(playMenuEntry);
+
             TransitionOnTime = TimeSpan.FromSeconds(1.5);
             TransitionOffTime = TimeSpan.FromSeconds(0.5);
 
@@ -36,9 +73,47 @@ namespace SeniorTowerDefense
                 new Keys[] { Keys.Escape },
                 true);
 
-            cursorRect = new Rectangle(0, 0, 30, 30);
+          
         }
 
+        void playMenuEntry_Selected(object sender, PlayerIndexEventArgs e)
+        {
+            // Look up inputs for the active player profile.
+            PlayerIndex playerIndex = ControllingPlayer.Value;
+
+            LoadingScreen.Load(ScreenManager, true, playerIndex,
+                              new GameplayScreen());
+        }
+       
+        void SetMenuEntryText()
+        {
+            classMenuEntry.Text = "Class: " + classes[currentClass];
+            mapMenuEntry.Text = "Map: " + maps[currentMap];
+            powerLevelMenuEntry.Text = "PowerLevel: " + powerLevel;
+            playMenuEntry.Text = "Play"; 
+        }
+
+        void powerLevelMenuEntry_Selected(object sender, PlayerIndexEventArgs e)
+        {
+            powerLevel++;
+
+            SetMenuEntryText();
+        }
+
+        void mapMenuEntry_Selected(object sender, PlayerIndexEventArgs e)
+        {
+            currentMap = (currentMap + 1) % maps.Length;
+
+            SetMenuEntryText();
+        }
+
+        void classMenuEntry_Selected(object sender, PlayerIndexEventArgs e)
+        {
+            currentClass = (currentClass + 1) % maps.Length;
+
+            SetMenuEntryText();
+        }
+ /*      
         public override void Activate(bool instancePreserved)
         {
             if (!instancePreserved)
@@ -47,7 +122,7 @@ namespace SeniorTowerDefense
                     content = new ContentManager(ScreenManager.Game.Services, "Content");
 
                 gameFont = content.Load<SpriteFont>("gamefont");
-                cursor = content.Load<Texture2D>("cursor");
+                
                 playButtonTexture = content.Load<Texture2D>("background");
 
                 ScreenManager.Game.ResetElapsedTime();
@@ -98,31 +173,27 @@ namespace SeniorTowerDefense
 
             KeyboardState keyboardState = input.CurrentKeyboardStates[playerIndex];
             MouseState mouseState = Mouse.GetState();
-
-
         }
-
-
-
+        
         public override void Draw(GameTime gameTime)
         {
             // This game has a blue background. Why? Because!
-            ScreenManager.GraphicsDevice.Clear(ClearOptions.Target,
-                                               Color.CornflowerBlue, 0, 0);
+           // ScreenManager.GraphicsDevice.Clear(ClearOptions.Target,
+           //                                    Color.CornflowerBlue, 0, 0);
 
-            // Our player and enemy are both actually just text strings.
+      
             SpriteBatch spriteBatch = ScreenManager.SpriteBatch;
 
             spriteBatch.Begin();
 
             spriteBatch.Draw(playButtonTexture, playButtonRect, Color.White);
             spriteBatch.DrawString(gameFont, "PLAY!", playButtonTextPosition, Color.Chartreuse);
-            spriteBatch.Draw(cursor, cursorRect, Color.White);
+            
 
             spriteBatch.End();
-
-
         }
+         */
+        
     }
 
 }

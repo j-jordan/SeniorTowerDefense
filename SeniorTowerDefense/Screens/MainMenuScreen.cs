@@ -56,9 +56,7 @@ namespace SeniorTowerDefense
         /// </summary>
         void PlayGameMenuEntrySelected(object sender, PlayerIndexEventArgs e)
         {
-
-            LoadingScreen.Load(ScreenManager, true, e.PlayerIndex,
-                               new GameSetupScreen());
+            ScreenManager.AddScreen(new GameSetupScreen(), e.PlayerIndex);
         }
 
 
@@ -72,7 +70,7 @@ namespace SeniorTowerDefense
 
 
         /// <summary>
-        /// When the user cancels the main menu, ask if they want to exit the sample.
+        /// When the user cancels the main menu, ask if they want to exit
         /// </summary>
         protected override void OnCancel(PlayerIndex playerIndex)
         {
