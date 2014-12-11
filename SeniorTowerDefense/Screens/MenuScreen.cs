@@ -245,9 +245,9 @@ namespace SeniorTowerDefense
             float transitionOffset = (float)Math.Pow(TransitionPosition, 2);
 
             // Draw the menu title centered on the screen
-            Vector2 titlePosition = new Vector2(300, 80);
+            Vector2 titlePosition = new Vector2(600, 80);
             Vector2 titleOrigin = font.MeasureString(menuTitle) / 2;
-            Color titleColor = new Color(192, 192, 192) * TransitionAlpha;
+            Color titleColor = new Color(100,100,100) * TransitionAlpha;
             float titleScale = 1.25f;
 
             titlePosition.Y -= transitionOffset * 100;

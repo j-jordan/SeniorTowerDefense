@@ -1,2 +1,1 @@
-C:\Users\Jeremy\Documents\Visual Studio 2010\Projects\SeniorTowerDefense\Content\obj\x86\Debug\ResolveAssemblyReference.cache
 E:\Users\Grujo\Documents\Senior Game Class\SeniorTowerDefense\Content\obj\x86\Debug\Content.contentprojResolveAssemblyReference.cache

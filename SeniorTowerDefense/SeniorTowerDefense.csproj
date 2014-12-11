@@ -65,6 +65,7 @@
     <XnaCompressContent>true</XnaCompressContent>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Game Objects\Bullet.cs" />
     <Compile Include="Game Objects\Enemy.cs" />
     <Compile Include="Game Objects\GridWorld.cs" />
     <Compile Include="Game Objects\Tower.cs" />

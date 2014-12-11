@@ -1,8 +1,6 @@
 Content\background.xnb
 Content\blank.xnb
 Content\gradient.xnb
-Content\menufont.xnb
-Content\gamefont.xnb
 Content\cursor.xnb
 Content\TitleScreenBackground.xnb
 Content\basicEnemy.xnb
@@ -10,7 +8,9 @@ Content\HUD.xnb
 Content\Minion.xnb
 Content\Next.xnb
 Content\Grid space.xnb
-Content\Kanye Turret.xnb
 Content\Map.xnb
-Content\HUD_FONT.xnb
+Content\Kanye Turret.xnb
 Content\Bullet.xnb
+Content\menufont.xnb
+Content\gamefont.xnb
+Content\HUD_FONT.xnb

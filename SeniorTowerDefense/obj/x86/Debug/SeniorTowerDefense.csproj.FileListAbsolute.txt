@@ -7,7 +7,6 @@ C:\Users\Jeremy\Documents\Visual Studio 2010\Projects\SeniorTowerDefense\SeniorT
 C:\Users\Jeremy\Documents\Visual Studio 2010\Projects\SeniorTowerDefense\SeniorTowerDefense\bin\x86\Debug\GameStateManagementSample.pdb
 C:\Users\Jeremy\Documents\Visual Studio 2010\Projects\SeniorTowerDefense\SeniorTowerDefense\bin\x86\Debug\GameStateManagement.dll
 C:\Users\Jeremy\Documents\Visual Studio 2010\Projects\SeniorTowerDefense\SeniorTowerDefense\bin\x86\Debug\GameStateManagement.pdb
-C:\Users\Jeremy\Documents\Visual Studio 2010\Projects\SeniorTowerDefense\SeniorTowerDefense\obj\x86\Debug\ResolveAssemblyReference.cache
 C:\Users\Jeremy\Documents\Visual Studio 2010\Projects\SeniorTowerDefense\SeniorTowerDefense\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 C:\Users\Jeremy\Documents\Visual Studio 2010\Projects\SeniorTowerDefense\SeniorTowerDefense\obj\x86\Debug\GameStateManagementSample.exe
 C:\Users\Jeremy\Documents\Visual Studio 2010\Projects\SeniorTowerDefense\SeniorTowerDefense\obj\x86\Debug\GameStateManagementSample.pdb
@@ -35,3 +34,15 @@ E:\Users\Grujo\Documents\Senior Game Class\SeniorTowerDefense\SeniorTowerDefense
 E:\Users\Grujo\Documents\Senior Game Class\SeniorTowerDefense\SeniorTowerDefense\bin\x86\Debug\Content\Map.xnb
 E:\Users\Grujo\Documents\Senior Game Class\SeniorTowerDefense\SeniorTowerDefense\bin\x86\Debug\Content\HUD_FONT.xnb
 E:\Users\Grujo\Documents\Senior Game Class\SeniorTowerDefense\SeniorTowerDefense\bin\x86\Debug\Content\Bullet.xnb
+C:\Users\Jeremy\Documents\Visual Studio 2010\Projects\SeniorTowerDefense\SeniorTowerDefense\bin\x86\Debug\Content\cursor.xnb
+C:\Users\Jeremy\Documents\Visual Studio 2010\Projects\SeniorTowerDefense\SeniorTowerDefense\bin\x86\Debug\Content\TitleScreenBackground.xnb
+C:\Users\Jeremy\Documents\Visual Studio 2010\Projects\SeniorTowerDefense\SeniorTowerDefense\bin\x86\Debug\Content\basicEnemy.xnb
+C:\Users\Jeremy\Documents\Visual Studio 2010\Projects\SeniorTowerDefense\SeniorTowerDefense\bin\x86\Debug\Content\HUD.xnb
+C:\Users\Jeremy\Documents\Visual Studio 2010\Projects\SeniorTowerDefense\SeniorTowerDefense\bin\x86\Debug\Content\Minion.xnb
+C:\Users\Jeremy\Documents\Visual Studio 2010\Projects\SeniorTowerDefense\SeniorTowerDefense\bin\x86\Debug\Content\Next.xnb
+C:\Users\Jeremy\Documents\Visual Studio 2010\Projects\SeniorTowerDefense\SeniorTowerDefense\bin\x86\Debug\Content\Grid space.xnb
+C:\Users\Jeremy\Documents\Visual Studio 2010\Projects\SeniorTowerDefense\SeniorTowerDefense\bin\x86\Debug\Content\Map.xnb
+C:\Users\Jeremy\Documents\Visual Studio 2010\Projects\SeniorTowerDefense\SeniorTowerDefense\bin\x86\Debug\Content\Kanye Turret.xnb
+C:\Users\Jeremy\Documents\Visual Studio 2010\Projects\SeniorTowerDefense\SeniorTowerDefense\bin\x86\Debug\Content\Bullet.xnb
+C:\Users\Jeremy\Documents\Visual Studio 2010\Projects\SeniorTowerDefense\SeniorTowerDefense\bin\x86\Debug\Content\HUD_FONT.xnb
+C:\Users\Jeremy\Documents\Visual Studio 2010\Projects\SeniorTowerDefense\SeniorTowerDefense\obj\x86\Debug\SeniorTowerDefense.csprojResolveAssemblyReference.cache

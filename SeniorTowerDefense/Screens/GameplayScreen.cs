@@ -194,20 +194,16 @@ namespace SeniorTowerDefense
                 countTime += gameTime.ElapsedGameTime;
                 updateEnemies(gameTime);
                 highlightGridAroundMouse();
-                updateTowers();
+                if(healthText <= 0)
+                {
+                    //TODO: GAME OVER
+                }
             }
         }
-
-        private void updateTowers()
-        {
-            towers.ForEach(delegate(Tower tower)
-                {
-                   
-                });
-        }
-
+        
         private void updateEnemies(GameTime gameTime)
         {
+            //Spawn enemies
             if (countTime > enemySpawnTime)
             {
                 countTime = TimeSpan.Zero; 
@@ -222,17 +218,12 @@ namespace SeniorTowerDefense
                 }
             }
 
+            //Move the enemies to their destination
             enemies.ForEach(delegate(Enemy enemy)
             {
                 if(enemy != null)
                 {
                     enemy.moveTowardsDestination();      //ENEMY MOVES
-
-                    towers.ForEach(delegate(Tower t)     // TOWERS SHOOT
-                    {
-                        t.shootBullet(enemy.Position(), gameTime); 
-                        t.updateBullets();
-                    });
                 }
                 if (enemy.reachedDestination())
                 {
@@ -241,6 +232,44 @@ namespace SeniorTowerDefense
                 }
             });
 
+            //Towers pick a target and shoot at him until he is dead
+            towers.ForEach(delegate(Tower t)
+            {
+                Enemy target = new Enemy();
+                
+                //get the first alive enemy
+                enemies.ForEach(delegate(Enemy enemy)
+                {
+                    if(enemy.isTargetable)
+                    {
+                        target = enemy;
+                    }
+                });
+
+                //Every tower shoot at him
+                if (target.isTargetable)
+                {                    
+                    Vector2 collisionLocation = t.shootBullet(target.Position(), gameTime);
+                    if(collisionLocation != new Vector2(0,0))
+                    {
+                        //find the enemy at that position and remove him
+                        enemies.ForEach(delegate(Enemy enemy)
+                        {
+                            if (enemy.Position() == collisionLocation)
+                            {
+                                //subtract HP
+                                enemy.hitEnemy();
+                                if(enemy.health <= 0)
+                                {
+                                    enemies.Remove(enemy);
+                                }
+                            }
+                        });
+                    }
+                }
+            });
+
+            //got em coach
             if(enemies.Count == 0)
             {
                 enemiesAlive = false;
@@ -302,8 +331,8 @@ namespace SeniorTowerDefense
                         int Xpos; //x point of the square with rounding
                         int Ypos; //y ''
 
-                        Xpos = (i / 45);
-                        Ypos = (j / 45);
+                        Xpos = (i / 45) + 1;
+                        Ypos = (j / 45) - 1;
 
                         if (Xpos < 28 && Xpos > -1 && Ypos < 13 && Ypos > -1)
                         {
@@ -392,14 +421,14 @@ namespace SeniorTowerDefense
             }
 
             towers.ForEach(delegate(Tower tower)
-                {
-                    List<Vector2> bulletPositions = tower.getBulletPositions();
+            {
+                List<Vector2> bulletPositions = tower.getBulletPositions();
 
-                    bulletPositions.ForEach(delegate(Vector2 pos)
-                    {
-                        spriteBatch.Draw(bulletTexture, pos, Color.White);
-                    });
+                bulletPositions.ForEach(delegate(Vector2 pos)
+                {
+                    spriteBatch.Draw(bulletTexture, pos, Color.White);
                 });
+            });
 
             foreach(Enemy enemy in enemies)
             {

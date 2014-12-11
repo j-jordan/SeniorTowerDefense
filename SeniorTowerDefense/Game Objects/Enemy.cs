@@ -15,12 +15,24 @@ namespace SeniorTowerDefense
         private Vector2 destination;
 
         private int velocity;
-        private int health;
+        public int health;
+
+        public bool isTargetable;
+
+        public Enemy()
+        {
+            velocity = randy.Next(5) + 1;
+            health = 100;
+
+            isTargetable = false;
+        }
 
         public Enemy(Vector2 p, Vector2 d)
         {
             velocity = randy.Next(5) + 1;
             health = 100;
+
+            isTargetable = true;
 
             position = p;
             destination = d;
@@ -55,6 +67,11 @@ namespace SeniorTowerDefense
             {
                 position.Y-= velocity;
             }
+        }
+
+        public void hitEnemy()
+        {
+            health -= 50;
         }
     }
 }

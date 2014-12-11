@@ -22,26 +22,20 @@ namespace SeniorTowerDefense
     {
         #region Fields
 
-        MenuEntry ungulateMenuEntry;
+        MenuEntry albumMenuEntry;
         MenuEntry languageMenuEntry;
         MenuEntry fullScreenMenuEntry;
-        MenuEntry elfMenuEntry;
+        MenuEntry volumeMenuEntry;
 
-        enum Ungulate
-        {
-            BactrianCamel,
-            Dromedary,
-            Llama,
-        }
+        static string[] albums = { "The College Dropout" , "Late Registration" , "Graduation" , "808s & Heartbreak" , "My Beatiful Dark Twisted Fantasy" , "Watch the Throne (ft. Jay-Z)" , "Yeezus"};
+        static int currentAlbum = 0;
 
-        static Ungulate currentUngulate = Ungulate.Dromedary;
-
-        static string[] languages = { "C#", "French", "Deoxyribonucleic acid" };
+        static string[] languages = { "English", "Spanish", "C#" };
         static int currentLanguage = 0;
 
         static bool fullScreen = false;
 
-        static int elf = 23;
+        static int volume = 100;
 
         #endregion
 
@@ -55,27 +49,27 @@ namespace SeniorTowerDefense
             : base("Options")
         {
             // Create our menu entries.
-            ungulateMenuEntry = new MenuEntry(string.Empty);
+            albumMenuEntry = new MenuEntry(string.Empty);
             languageMenuEntry = new MenuEntry(string.Empty);
             fullScreenMenuEntry = new MenuEntry(string.Empty);
-            elfMenuEntry = new MenuEntry(string.Empty);
+            volumeMenuEntry = new MenuEntry(string.Empty);
 
             SetMenuEntryText();
 
             MenuEntry back = new MenuEntry("Back");
 
             // Hook up menu event handlers.
-            ungulateMenuEntry.Selected += UngulateMenuEntrySelected;
+            albumMenuEntry.Selected += UngulateMenuEntrySelected;
             languageMenuEntry.Selected += LanguageMenuEntrySelected;
             fullScreenMenuEntry.Selected += FullScreenMenuEntrySelected;
-            elfMenuEntry.Selected += ElfMenuEntrySelected;
+            volumeMenuEntry.Selected += ElfMenuEntrySelected;
             back.Selected += OnCancel;
             
             // Add entries to the menu.
-            MenuEntries.Add(ungulateMenuEntry);
+            MenuEntries.Add(albumMenuEntry);
             MenuEntries.Add(languageMenuEntry);
             MenuEntries.Add(fullScreenMenuEntry);
-            MenuEntries.Add(elfMenuEntry);
+            MenuEntries.Add(volumeMenuEntry);
             MenuEntries.Add(back);
         }
 
@@ -85,10 +79,10 @@ namespace SeniorTowerDefense
         /// </summary>
         void SetMenuEntryText()
         {
-            ungulateMenuEntry.Text = "Preferred ungulate: " + currentUngulate;
+            albumMenuEntry.Text = "Album: " + albums[currentAlbum];
             languageMenuEntry.Text = "Language: " + languages[currentLanguage];
             fullScreenMenuEntry.Text = "Fullscreen: " + (fullScreen ? "on" : "off");
-            elfMenuEntry.Text = "elf: " + elf;
+            volumeMenuEntry.Text = "Volume: " + volume;
         }
 
 
@@ -102,10 +96,7 @@ namespace SeniorTowerDefense
         /// </summary>
         void UngulateMenuEntrySelected(object sender, PlayerIndexEventArgs e)
         {
-            currentUngulate++;
-
-            if (currentUngulate > Ungulate.Llama)
-                currentUngulate = 0;
+            currentAlbum = (currentAlbum + 1) % albums.Length;
 
             SetMenuEntryText();
         }
@@ -138,7 +129,7 @@ namespace SeniorTowerDefense
         /// </summary>
         void ElfMenuEntrySelected(object sender, PlayerIndexEventArgs e)
         {
-            elf++;
+            volume++;
 
             SetMenuEntryText();
         }

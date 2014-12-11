@@ -7,8 +7,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>E:\Users\Grujo\Documents\Senior Game Class\SeniorTowerDefense\SeniorTowerDefense\bin\x86\Debug\Content\background.xnb</Output>
-      <Time>2014-10-28T17:36:01.61691-05:00</Time>
+      <Output>C:\Users\Jeremy\Documents\Visual Studio 2010\Projects\SeniorTowerDefense\SeniorTowerDefense\bin\x86\Debug\Content\background.xnb</Output>
+      <Time>2014-12-11T16:05:31.4633499-06:00</Time>
     </Item>
     <Item>
       <Source>blank.png</Source>
@@ -16,8 +16,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>E:\Users\Grujo\Documents\Senior Game Class\SeniorTowerDefense\SeniorTowerDefense\bin\x86\Debug\Content\blank.xnb</Output>
-      <Time>2014-10-28T17:36:01.61691-05:00</Time>
+      <Output>C:\Users\Jeremy\Documents\Visual Studio 2010\Projects\SeniorTowerDefense\SeniorTowerDefense\bin\x86\Debug\Content\blank.xnb</Output>
+      <Time>2010-09-15T15:43:52-05:00</Time>
     </Item>
     <Item>
       <Source>gradient.png</Source>
@@ -25,26 +25,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>E:\Users\Grujo\Documents\Senior Game Class\SeniorTowerDefense\SeniorTowerDefense\bin\x86\Debug\Content\gradient.xnb</Output>
-      <Time>2014-10-28T17:36:01.6219132-05:00</Time>
-    </Item>
-    <Item>
-      <Source>menufont.spritefont</Source>
-      <Name>menufont</Name>
-      <Importer>FontDescriptionImporter</Importer>
-      <Processor>FontDescriptionProcessor</Processor>
-      <Options>None</Options>
-      <Output>E:\Users\Grujo\Documents\Senior Game Class\SeniorTowerDefense\SeniorTowerDefense\bin\x86\Debug\Content\menufont.xnb</Output>
-      <Time>2014-11-11T16:10:18.2637365-06:00</Time>
-    </Item>
-    <Item>
-      <Source>gamefont.spritefont</Source>
-      <Name>gamefont</Name>
-      <Importer>FontDescriptionImporter</Importer>
-      <Processor>FontDescriptionProcessor</Processor>
-      <Options>None</Options>
-      <Output>E:\Users\Grujo\Documents\Senior Game Class\SeniorTowerDefense\SeniorTowerDefense\bin\x86\Debug\Content\gamefont.xnb</Output>
-      <Time>2014-10-28T17:36:01.6209296-05:00</Time>
+      <Output>C:\Users\Jeremy\Documents\Visual Studio 2010\Projects\SeniorTowerDefense\SeniorTowerDefense\bin\x86\Debug\Content\gradient.xnb</Output>
+      <Time>2010-09-15T15:43:52-05:00</Time>
     </Item>
     <Item>
       <Source>cursor.png</Source>
@@ -52,8 +34,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>E:\Users\Grujo\Documents\Senior Game Class\SeniorTowerDefense\SeniorTowerDefense\bin\x86\Debug\Content\cursor.xnb</Output>
-      <Time>2014-11-08T20:48:43.5702918-06:00</Time>
+      <Output>C:\Users\Jeremy\Documents\Visual Studio 2010\Projects\SeniorTowerDefense\SeniorTowerDefense\bin\x86\Debug\Content\cursor.xnb</Output>
+      <Time>2014-12-11T13:15:47.0053748-06:00</Time>
     </Item>
     <Item>
       <Source>TitleScreenBackground.png</Source>
@@ -61,8 +43,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>E:\Users\Grujo\Documents\Senior Game Class\SeniorTowerDefense\SeniorTowerDefense\bin\x86\Debug\Content\TitleScreenBackground.xnb</Output>
-      <Time>2014-11-11T15:58:55.7669299-06:00</Time>
+      <Output>C:\Users\Jeremy\Documents\Visual Studio 2010\Projects\SeniorTowerDefense\SeniorTowerDefense\bin\x86\Debug\Content\TitleScreenBackground.xnb</Output>
+      <Time>2014-12-11T13:15:47.0053748-06:00</Time>
     </Item>
     <Item>
       <Source>basicEnemy.png</Source>
@@ -70,8 +52,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>E:\Users\Grujo\Documents\Senior Game Class\SeniorTowerDefense\SeniorTowerDefense\bin\x86\Debug\Content\basicEnemy.xnb</Output>
-      <Time>2014-11-11T18:27:14.4287755-06:00</Time>
+      <Output>C:\Users\Jeremy\Documents\Visual Studio 2010\Projects\SeniorTowerDefense\SeniorTowerDefense\bin\x86\Debug\Content\basicEnemy.xnb</Output>
+      <Time>2014-12-11T13:15:47.0053748-06:00</Time>
     </Item>
     <Item>
       <Source>HUD.png</Source>
@@ -79,8 +61,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>E:\Users\Grujo\Documents\Senior Game Class\SeniorTowerDefense\SeniorTowerDefense\bin\x86\Debug\Content\HUD.xnb</Output>
-      <Time>2014-12-08T14:49:45.6213267-06:00</Time>
+      <Output>C:\Users\Jeremy\Documents\Visual Studio 2010\Projects\SeniorTowerDefense\SeniorTowerDefense\bin\x86\Debug\Content\HUD.xnb</Output>
+      <Time>2014-12-11T13:15:46.9953748-06:00</Time>
     </Item>
     <Item>
       <Source>Minion.png</Source>
@@ -88,8 +70,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>E:\Users\Grujo\Documents\Senior Game Class\SeniorTowerDefense\SeniorTowerDefense\bin\x86\Debug\Content\Minion.xnb</Output>
-      <Time>2014-12-08T14:49:45.6193138-06:00</Time>
+      <Output>C:\Users\Jeremy\Documents\Visual Studio 2010\Projects\SeniorTowerDefense\SeniorTowerDefense\bin\x86\Debug\Content\Minion.xnb</Output>
+      <Time>2014-12-11T13:15:47.0053748-06:00</Time>
     </Item>
     <Item>
       <Source>Next.png</Source>
@@ -97,8 +79,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>E:\Users\Grujo\Documents\Senior Game Class\SeniorTowerDefense\SeniorTowerDefense\bin\x86\Debug\Content\Next.xnb</Output>
-      <Time>2014-12-08T14:49:45.6223147-06:00</Time>
+      <Output>C:\Users\Jeremy\Documents\Visual Studio 2010\Projects\SeniorTowerDefense\SeniorTowerDefense\bin\x86\Debug\Content\Next.xnb</Output>
+      <Time>2014-12-11T13:15:47.0053748-06:00</Time>
     </Item>
     <Item>
       <Source>Grid space.png</Source>
@@ -106,17 +88,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>E:\Users\Grujo\Documents\Senior Game Class\SeniorTowerDefense\SeniorTowerDefense\bin\x86\Debug\Content\Grid space.xnb</Output>
-      <Time>2014-12-08T16:24:02.9289743-06:00</Time>
-    </Item>
-    <Item>
-      <Source>Kanye Turret.png</Source>
-      <Name>Kanye Turret</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>E:\Users\Grujo\Documents\Senior Game Class\SeniorTowerDefense\SeniorTowerDefense\bin\x86\Debug\Content\Kanye Turret.xnb</Output>
-      <Time>2014-12-08T17:14:39.4040261-06:00</Time>
+      <Output>C:\Users\Jeremy\Documents\Visual Studio 2010\Projects\SeniorTowerDefense\SeniorTowerDefense\bin\x86\Debug\Content\Grid space.xnb</Output>
+      <Time>2014-12-11T13:51:10.3220196-06:00</Time>
     </Item>
     <Item>
       <Source>Map.png</Source>
@@ -124,17 +97,17 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>E:\Users\Grujo\Documents\Senior Game Class\SeniorTowerDefense\SeniorTowerDefense\bin\x86\Debug\Content\Map.xnb</Output>
-      <Time>2014-12-08T17:10:54.4494744-06:00</Time>
+      <Output>C:\Users\Jeremy\Documents\Visual Studio 2010\Projects\SeniorTowerDefense\SeniorTowerDefense\bin\x86\Debug\Content\Map.xnb</Output>
+      <Time>2014-12-11T13:15:47.0053748-06:00</Time>
     </Item>
     <Item>
-      <Source>HUD_FONT.spritefont</Source>
-      <Name>HUD_FONT</Name>
-      <Importer>FontDescriptionImporter</Importer>
-      <Processor>FontDescriptionProcessor</Processor>
+      <Source>Kanye Turret.png</Source>
+      <Name>Kanye Turret</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>E:\Users\Grujo\Documents\Senior Game Class\SeniorTowerDefense\SeniorTowerDefense\bin\x86\Debug\Content\HUD_FONT.xnb</Output>
-      <Time>2014-12-08T18:24:04.6429756-06:00</Time>
+      <Output>C:\Users\Jeremy\Documents\Visual Studio 2010\Projects\SeniorTowerDefense\SeniorTowerDefense\bin\x86\Debug\Content\Kanye Turret.xnb</Output>
+      <Time>2014-12-11T13:50:24.0109727-06:00</Time>
     </Item>
     <Item>
       <Source>Bullet.png</Source>
@@ -142,8 +115,35 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>E:\Users\Grujo\Documents\Senior Game Class\SeniorTowerDefense\SeniorTowerDefense\bin\x86\Debug\Content\Bullet.xnb</Output>
-      <Time>2014-12-11T01:50:37.1003652-06:00</Time>
+      <Output>C:\Users\Jeremy\Documents\Visual Studio 2010\Projects\SeniorTowerDefense\SeniorTowerDefense\bin\x86\Debug\Content\Bullet.xnb</Output>
+      <Time>2014-12-11T13:56:41.5887286-06:00</Time>
+    </Item>
+    <Item>
+      <Source>menufont.spritefont</Source>
+      <Name>menufont</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Jeremy\Documents\Visual Studio 2010\Projects\SeniorTowerDefense\SeniorTowerDefense\bin\x86\Debug\Content\menufont.xnb</Output>
+      <Time>2014-12-11T13:15:47.0053748-06:00</Time>
+    </Item>
+    <Item>
+      <Source>gamefont.spritefont</Source>
+      <Name>gamefont</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Jeremy\Documents\Visual Studio 2010\Projects\SeniorTowerDefense\SeniorTowerDefense\bin\x86\Debug\Content\gamefont.xnb</Output>
+      <Time>2010-09-15T15:43:52-05:00</Time>
+    </Item>
+    <Item>
+      <Source>HUD_FONT.spritefont</Source>
+      <Name>HUD_FONT</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Jeremy\Documents\Visual Studio 2010\Projects\SeniorTowerDefense\SeniorTowerDefense\bin\x86\Debug\Content\HUD_FONT.xnb</Output>
+      <Time>2014-12-11T13:15:46.9953748-06:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
@@ -152,39 +152,39 @@
       <TargetProfile>Reach</TargetProfile>
       <BuildConfiguration>Debug</BuildConfiguration>
       <CompressContent>false</CompressContent>
-      <RootDirectory>E:\Users\Grujo\Documents\Senior Game Class\SeniorTowerDefense\Content\</RootDirectory>
-      <LoggerRootDirectory>E:\Users\Grujo\Documents\Senior Game Class\SeniorTowerDefense\SeniorTowerDefense\</LoggerRootDirectory>
-      <IntermediateDirectory>E:\Users\Grujo\Documents\Senior Game Class\SeniorTowerDefense\SeniorTowerDefense\obj\x86\Debug\</IntermediateDirectory>
-      <OutputDirectory>E:\Users\Grujo\Documents\Senior Game Class\SeniorTowerDefense\SeniorTowerDefense\bin\x86\Debug\Content\</OutputDirectory>
+      <RootDirectory>C:\Users\Jeremy\Documents\Visual Studio 2010\Projects\SeniorTowerDefense\Content\</RootDirectory>
+      <LoggerRootDirectory>C:\Users\Jeremy\Documents\Visual Studio 2010\Projects\SeniorTowerDefense\SeniorTowerDefense\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\Users\Jeremy\Documents\Visual Studio 2010\Projects\SeniorTowerDefense\SeniorTowerDefense\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\Users\Jeremy\Documents\Visual Studio 2010\Projects\SeniorTowerDefense\SeniorTowerDefense\bin\x86\Debug\Content\</OutputDirectory>
     </Settings>
     <Assemblies>
       <Assembly>
         <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.XImporter.dll</Key>
-        <Value>2011-09-01T16:22:30-05:00</Value>
+        <Value>2011-09-01T17:22:30-05:00</Value>
       </Assembly>
       <Assembly>
         <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.VideoImporters.dll</Key>
-        <Value>2011-09-01T16:22:30-05:00</Value>
+        <Value>2011-09-01T17:22:30-05:00</Value>
       </Assembly>
       <Assembly>
         <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.TextureImporter.dll</Key>
-        <Value>2011-09-01T16:22:30-05:00</Value>
+        <Value>2011-09-01T17:22:30-05:00</Value>
       </Assembly>
       <Assembly>
         <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.FBXImporter.dll</Key>
-        <Value>2011-09-01T16:22:30-05:00</Value>
+        <Value>2011-09-01T17:22:30-05:00</Value>
       </Assembly>
       <Assembly>
         <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.EffectImporter.dll</Key>
-        <Value>2011-09-01T16:22:30-05:00</Value>
+        <Value>2011-09-01T17:22:30-05:00</Value>
       </Assembly>
       <Assembly>
         <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.AudioImporters.dll</Key>
-        <Value>2011-09-01T16:22:30-05:00</Value>
+        <Value>2011-09-01T17:22:30-05:00</Value>
       </Assembly>
       <Assembly>
-        <Key>C:\WINDOWS\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
-        <Value>2014-09-17T22:47:57.8510312-05:00</Value>
+        <Key>C:\Windows\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
+        <Value>2014-11-15T17:55:10.6873048-06:00</Value>
       </Assembly>
     </Assemblies>
   </Asset>

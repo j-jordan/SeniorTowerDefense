@@ -33,7 +33,7 @@ namespace SeniorTowerDefense
         MenuEntry powerLevelMenuEntry;
         MenuEntry playMenuEntry;
 
-        static string[] classes = { "Peasant", "Engi", "Sayian" };
+        static string[] classes = { "God", "Engi", "Sayian" };
         static int currentClass = 0;
 
         static string[] maps = { "Green Fields", "Rock Outcrop", "Hell" };
@@ -43,7 +43,7 @@ namespace SeniorTowerDefense
 
        
         public GameSetupScreen() :
-            base("Setup")
+            base("Respect my trendsetting abilities.\nOnce that happens, everyone wins.")
         {
             //Menu Entries
             classMenuEntry = new MenuEntry(string.Empty);
