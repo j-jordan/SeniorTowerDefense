@@ -11,7 +11,7 @@
 using Microsoft.Xna.Framework;
 #endregion
 
-namespace GameStateManagementSample
+namespace SeniorTowerDefense
 {
     /// <summary>
     /// The pause menu comes up over the top of the game,

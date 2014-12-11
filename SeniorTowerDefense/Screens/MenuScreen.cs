@@ -17,7 +17,7 @@ using Microsoft.Xna.Framework.Input;
 using GameStateManagement;
 #endregion
 
-namespace GameStateManagementSample
+namespace SeniorTowerDefense
 {
     /// <summary>
     /// Base class for screens that contain a menu of options. The user can
@@ -56,9 +56,6 @@ namespace GameStateManagementSample
         #region Initialization
 
 
-        /// <summary>
-        /// Constructor.
-        /// </summary>
         public MenuScreen(string menuTitle)
         {
             this.menuTitle = menuTitle;
@@ -248,7 +245,7 @@ namespace GameStateManagementSample
             float transitionOffset = (float)Math.Pow(TransitionPosition, 2);
 
             // Draw the menu title centered on the screen
-            Vector2 titlePosition = new Vector2(graphics.Viewport.Width / 2, 80);
+            Vector2 titlePosition = new Vector2(300, 80);
             Vector2 titleOrigin = font.MeasureString(menuTitle) / 2;
             Color titleColor = new Color(192, 192, 192) * TransitionAlpha;
             float titleScale = 1.25f;

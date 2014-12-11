@@ -24,3 +24,14 @@ E:\Users\Grujo\Documents\Senior Game Class\SeniorTowerDefense\SeniorTowerDefense
 E:\Users\Grujo\Documents\Senior Game Class\SeniorTowerDefense\SeniorTowerDefense\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 E:\Users\Grujo\Documents\Senior Game Class\SeniorTowerDefense\SeniorTowerDefense\obj\x86\Debug\GameStateManagementSample.exe
 E:\Users\Grujo\Documents\Senior Game Class\SeniorTowerDefense\SeniorTowerDefense\obj\x86\Debug\GameStateManagementSample.pdb
+E:\Users\Grujo\Documents\Senior Game Class\SeniorTowerDefense\SeniorTowerDefense\bin\x86\Debug\Content\cursor.xnb
+E:\Users\Grujo\Documents\Senior Game Class\SeniorTowerDefense\SeniorTowerDefense\bin\x86\Debug\Content\TitleScreenBackground.xnb
+E:\Users\Grujo\Documents\Senior Game Class\SeniorTowerDefense\SeniorTowerDefense\bin\x86\Debug\Content\basicEnemy.xnb
+E:\Users\Grujo\Documents\Senior Game Class\SeniorTowerDefense\SeniorTowerDefense\bin\x86\Debug\Content\HUD.xnb
+E:\Users\Grujo\Documents\Senior Game Class\SeniorTowerDefense\SeniorTowerDefense\bin\x86\Debug\Content\Minion.xnb
+E:\Users\Grujo\Documents\Senior Game Class\SeniorTowerDefense\SeniorTowerDefense\bin\x86\Debug\Content\Next.xnb
+E:\Users\Grujo\Documents\Senior Game Class\SeniorTowerDefense\SeniorTowerDefense\bin\x86\Debug\Content\Grid space.xnb
+E:\Users\Grujo\Documents\Senior Game Class\SeniorTowerDefense\SeniorTowerDefense\bin\x86\Debug\Content\Kanye Turret.xnb
+E:\Users\Grujo\Documents\Senior Game Class\SeniorTowerDefense\SeniorTowerDefense\bin\x86\Debug\Content\Map.xnb
+E:\Users\Grujo\Documents\Senior Game Class\SeniorTowerDefense\SeniorTowerDefense\bin\x86\Debug\Content\HUD_FONT.xnb
+E:\Users\Grujo\Documents\Senior Game Class\SeniorTowerDefense\SeniorTowerDefense\bin\x86\Debug\Content\Bullet.xnb

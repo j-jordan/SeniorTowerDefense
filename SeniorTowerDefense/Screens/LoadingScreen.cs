@@ -14,7 +14,7 @@ using Microsoft.Xna.Framework.Graphics;
 using GameStateManagement;
 #endregion
 
-namespace GameStateManagementSample
+namespace SeniorTowerDefense
 {
     /// <summary>
     /// The loading screen coordinates transitions between the menu system and the

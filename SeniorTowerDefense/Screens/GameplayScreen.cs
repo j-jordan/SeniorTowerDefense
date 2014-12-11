@@ -15,9 +15,10 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using GameStateManagement;
+using System.Collections.Generic;
 #endregion
 
-namespace GameStateManagementSample
+namespace SeniorTowerDefense
 {
     /// <summary>
     /// This screen implements the actual game logic. It is just a
@@ -30,9 +31,58 @@ namespace GameStateManagementSample
 
         ContentManager content;
         SpriteFont gameFont;
+        SpriteFont hudFont;
 
-        Vector2 playerPosition = new Vector2(100, 100);
-        Vector2 enemyPosition = new Vector2(100, 100);
+        //Game flags
+        bool enemiesAlive = false;
+
+        GridWorld gridWorld;
+
+        int healthText = 100;
+        int moneyText = 1000;    
+
+        //offsets
+        int hudOffSetX = 6;
+        int hudOffSetY = 110;
+
+        // Cursor
+        Texture2D cursor;
+        Rectangle cursorRect;
+
+        // Mouse        
+        MouseState mouse;
+        MouseState oldMouse;
+
+        //Enemies        
+        List<Enemy> enemies;
+        int enemyCount;
+        TimeSpan enemySpawnTime = new TimeSpan(0, 0, 1);
+        TimeSpan countTime;
+        Texture2D basicEnemyTexture;
+
+        //Heads Up Display
+        Texture2D hudTexture;
+        Rectangle hudRect;
+
+        //Background
+        Texture2D mapTexture;
+        Rectangle mapRectangle;
+
+        //Next round button
+        Texture2D nextButtonTexture;
+        Rectangle nextButtonRect;
+
+        //Grid Box rekt
+        Texture2D gridBoxText;
+        Vector2 gridBoxPos;
+
+        //Turret
+        List<Tower> towers;
+        Texture2D towerTexture;
+        Rectangle towerRect;
+        Texture2D bulletTexture;
+
+        int round;
 
         Random random = new Random();
 
@@ -53,10 +103,24 @@ namespace GameStateManagementSample
             TransitionOnTime = TimeSpan.FromSeconds(1.5);
             TransitionOffTime = TimeSpan.FromSeconds(0.5);
 
+            cursorRect = new Rectangle(0, 0, 15, 15);
+            hudRect = new Rectangle(0, 0, 1280, 720);
+            nextButtonRect = new Rectangle(1200, 640, 69, 72);
+            mapRectangle = new Rectangle(hudOffSetX, hudOffSetY, 1280-hudOffSetX, 720 - hudOffSetY);
+            gridWorld = new GridWorld();
+
+            //Towers
+            towers = new List<Tower>(100);
+
+            //Enemies
+            enemies = new List<Enemy>(100);            
+            round = 0;
+
             pauseAction = new InputAction(
                 new Buttons[] { Buttons.Start, Buttons.Back },
                 new Keys[] { Keys.Escape },
                 true);
+
         }
 
 
@@ -71,34 +135,25 @@ namespace GameStateManagementSample
                     content = new ContentManager(ScreenManager.Game.Services, "Content");
 
                 gameFont = content.Load<SpriteFont>("gamefont");
+                hudFont = content.Load<SpriteFont>("HUD_FONT");
+                
+                cursor = content.Load<Texture2D>("cursor");
+                basicEnemyTexture = content.Load<Texture2D>("Minion");
+                towerTexture = content.Load<Texture2D>("Kanye Turret"); 
+                hudTexture = content.Load<Texture2D>("HUD");
+                nextButtonTexture = content.Load<Texture2D>("Next");
+                mapTexture = content.Load<Texture2D>("Map");
+                gridBoxText = content.Load<Texture2D>("Grid space");
+                bulletTexture = content.Load<Texture2D>("Bullet");
 
-                // A real game would probably have more content than this sample, so
-                // it would take longer to load. We simulate that by delaying for a
-                // while, giving you a chance to admire the beautiful loading screen.
-                Thread.Sleep(1000);
-
-                // once the load has finished, we use ResetElapsedTime to tell the game's
-                // timing mechanism that we have just finished a very long frame, and that
-                // it should not try to catch up.
                 ScreenManager.Game.ResetElapsedTime();
             }
 
-#if WINDOWS_PHONE
-            if (Microsoft.Phone.Shell.PhoneApplicationService.Current.State.ContainsKey("PlayerPosition"))
-            {
-                playerPosition = (Vector2)Microsoft.Phone.Shell.PhoneApplicationService.Current.State["PlayerPosition"];
-                enemyPosition = (Vector2)Microsoft.Phone.Shell.PhoneApplicationService.Current.State["EnemyPosition"];
-            }
-#endif
         }
 
 
         public override void Deactivate()
         {
-#if WINDOWS_PHONE
-            Microsoft.Phone.Shell.PhoneApplicationService.Current.State["PlayerPosition"] = playerPosition;
-            Microsoft.Phone.Shell.PhoneApplicationService.Current.State["EnemyPosition"] = enemyPosition;
-#endif
 
             base.Deactivate();
         }
@@ -110,11 +165,6 @@ namespace GameStateManagementSample
         public override void Unload()
         {
             content.Unload();
-
-#if WINDOWS_PHONE
-            Microsoft.Phone.Shell.PhoneApplicationService.Current.State.Remove("PlayerPosition");
-            Microsoft.Phone.Shell.PhoneApplicationService.Current.State.Remove("EnemyPosition");
-#endif
         }
 
 
@@ -141,24 +191,61 @@ namespace GameStateManagementSample
 
             if (IsActive)
             {
-                // Apply some random jitter to make the enemy move around.
-                const float randomization = 10;
-
-                enemyPosition.X += (float)(random.NextDouble() - 0.5) * randomization;
-                enemyPosition.Y += (float)(random.NextDouble() - 0.5) * randomization;
-
-                // Apply a stabilizing force to stop the enemy moving off the screen.
-                Vector2 targetPosition = new Vector2(
-                    ScreenManager.GraphicsDevice.Viewport.Width / 2 - gameFont.MeasureString("Insert Gameplay Here").X / 2, 
-                    200);
-
-                enemyPosition = Vector2.Lerp(enemyPosition, targetPosition, 0.05f);
-
-                // TODO: this game isn't very fun! You could probably improve
-                // it by inserting something more interesting in this space :-)
+                countTime += gameTime.ElapsedGameTime;
+                updateEnemies(gameTime);
+                highlightGridAroundMouse();
+                updateTowers();
             }
         }
 
+        private void updateTowers()
+        {
+            towers.ForEach(delegate(Tower tower)
+                {
+                   
+                });
+        }
+
+        private void updateEnemies(GameTime gameTime)
+        {
+            if (countTime > enemySpawnTime)
+            {
+                countTime = TimeSpan.Zero; 
+                    
+                if(enemyCount < (round * 5))
+                {
+                    Enemy badGuy = new Enemy(new Vector2(gridWorld.getMapSource().X * 45 + hudOffSetX, gridWorld.getMapSource().Y * 45 + hudOffSetY),
+                        new Vector2(gridWorld.getMapDestination().X * 45 + hudOffSetX, gridWorld.getMapDestination().Y * 45 + hudOffSetY));
+                    enemies.Add(badGuy);
+                    enemyCount++;
+                    enemiesAlive = true;
+                }
+            }
+
+            enemies.ForEach(delegate(Enemy enemy)
+            {
+                if(enemy != null)
+                {
+                    enemy.moveTowardsDestination();      //ENEMY MOVES
+
+                    towers.ForEach(delegate(Tower t)     // TOWERS SHOOT
+                    {
+                        t.shootBullet(enemy.Position(), gameTime); 
+                        t.updateBullets();
+                    });
+                }
+                if (enemy.reachedDestination())
+                {
+                    enemies.Remove(enemy);
+                    healthText -= 20;
+                }
+            });
+
+            if(enemies.Count == 0)
+            {
+                enemiesAlive = false;
+            }
+        }
 
         /// <summary>
         /// Lets the game respond to player input. Unlike the Update method,
@@ -174,6 +261,7 @@ namespace GameStateManagementSample
 
             KeyboardState keyboardState = input.CurrentKeyboardStates[playerIndex];
             GamePadState gamePadState = input.CurrentGamePadStates[playerIndex];
+            
 
             // The game pauses either if the user presses the pause button, or if
             // they unplug the active gamepad. This requires us to keep track of
@@ -185,49 +273,70 @@ namespace GameStateManagementSample
             PlayerIndex player;
             if (pauseAction.Evaluate(input, ControllingPlayer, out player) || gamePadDisconnected)
             {
-#if WINDOWS_PHONE
-                ScreenManager.AddScreen(new PhonePauseScreen(), ControllingPlayer);
-#else
                 ScreenManager.AddScreen(new PauseMenuScreen(), ControllingPlayer);
-#endif
             }
             else
             {
-                // Otherwise move the player position.
-                Vector2 movement = Vector2.Zero;
-
-                if (keyboardState.IsKeyDown(Keys.Left))
-                    movement.X--;
-
-                if (keyboardState.IsKeyDown(Keys.Right))
-                    movement.X++;
-
-                if (keyboardState.IsKeyDown(Keys.Up))
-                    movement.Y--;
-
-                if (keyboardState.IsKeyDown(Keys.Down))
-                    movement.Y++;
-
-                Vector2 thumbstick = gamePadState.ThumbSticks.Left;
-
-                movement.X += thumbstick.X;
-                movement.Y -= thumbstick.Y;
-
-                if (input.TouchState.Count > 0)
-                {
-                    Vector2 touchPosition = input.TouchState[0].Position;
-                    Vector2 direction = touchPosition - playerPosition;
-                    direction.Normalize();
-                    movement += direction;
-                }
-
-                if (movement.Length() > 1)
-                    movement.Normalize();
-
-                playerPosition += movement * 8f;
+                cursorFollowMouse();
             }
+            if(mouse.LeftButton == ButtonState.Released  && oldMouse.LeftButton == ButtonState.Pressed && nextButtonRect.Contains(mouse.X, mouse.Y) && !enemiesAlive)
+            {
+                round++;
+            }
+            oldMouse = mouse;            
+            mouse = Mouse.GetState();
+
         }
 
+        /// <summary>
+        ///  Check the nearest grid position at the current coordinates
+        /// </summary>
+        public Vector2 checkMouseGridPosition()
+        {
+            for (int i = hudOffSetX; i < 1280-hudOffSetX; i++)
+            {
+                for(int j = hudOffSetY; j <720-hudOffSetX ; j++)
+                {
+                    if(mouse.X >= i && mouse.X <= i + 45 && mouse.Y >= j && mouse.Y <= j +45)
+                    {
+                        int Xpos; //x point of the square with rounding
+                        int Ypos; //y ''
+
+                        Xpos = (i / 45);
+                        Ypos = (j / 45);
+
+                        if (Xpos < 28 && Xpos > -1 && Ypos < 13 && Ypos > -1)
+                        {
+                            return new Vector2(Xpos, Ypos);
+                        }
+                    }                    
+                }
+            }
+            
+            return new Vector2(-42, -42);
+        }
+
+        /// <summary>
+        ///     Highlights the grid square around the mouse
+        /// </summary>
+        public void highlightGridAroundMouse()
+        {
+            gridBoxPos = checkMouseGridPosition();
+    
+            oldMouse = mouse;      
+            mouse = Mouse.GetState();       
+
+            if (mouse.LeftButton == ButtonState.Released && oldMouse.LeftButton == ButtonState.Pressed && moneyText >= 200 && !enemiesAlive)
+            {
+                if(gridWorld.setTowerPosition((int)gridBoxPos.X, (int)gridBoxPos.Y))
+                {
+                    moneyText -= 200;
+                    towers.Add(new Tower(gridBoxPos));
+                }
+            }
+            gridBoxPos.X = gridBoxPos.X * 45 + hudOffSetX;
+            gridBoxPos.Y = gridBoxPos.Y * 45 + hudOffSetY;
+        }
 
         /// <summary>
         /// Draws the gameplay screen.
@@ -236,17 +345,69 @@ namespace GameStateManagementSample
         {
             // This game has a blue background. Why? Because!
             ScreenManager.GraphicsDevice.Clear(ClearOptions.Target,
-                                               Color.CornflowerBlue, 0, 0);
+                                               Color.Black, 0, 0);
 
             // Our player and enemy are both actually just text strings.
             SpriteBatch spriteBatch = ScreenManager.SpriteBatch;
 
             spriteBatch.Begin();
 
-            spriteBatch.DrawString(gameFont, "// TODO", playerPosition, Color.Green);
+            spriteBatch.Draw(mapTexture, mapRectangle, Color.White); 
+            
+            spriteBatch.Draw(gridBoxText, gridBoxPos, Color.White);
 
-            spriteBatch.DrawString(gameFont, "Insert Gameplay Here",
-                                   enemyPosition, Color.DarkRed);
+            spriteBatch.Draw(hudTexture, hudRect, Color.White);
+
+            spriteBatch.DrawString(hudFont, healthText +"", new Vector2(160,20), Color.Red);
+
+            spriteBatch.DrawString(hudFont, "$" + moneyText, new Vector2(470, 20), Color.Black);
+
+            spriteBatch.DrawString(hudFont, "ROUND: " + round, new Vector2(800, 20), Color.Black);
+
+            spriteBatch.Draw(nextButtonTexture, nextButtonRect, Color.White);           
+
+            spriteBatch.Draw(cursor, cursorRect, Color.White);
+
+            for (int i = 0; i < gridWorld.getMapGirth(); i++)
+            {
+                for (int j = 0; j < gridWorld.getMapHeight(); j++)
+                {
+                    switch(gridWorld.getMapEntity(i,j))
+                    {
+                        case (GridWorld.MapEntity.Destination):
+                            break;
+                        case (GridWorld.MapEntity.Empty):
+                            break;
+                        case (GridWorld.MapEntity.Enemy):
+                            break;
+                        case (GridWorld.MapEntity.Obstical):
+                            break;
+                        case (GridWorld.MapEntity.Source):
+                            break;
+                        case (GridWorld.MapEntity.Tower):
+                            spriteBatch.Draw(towerTexture, new Rectangle((i*45) + hudOffSetX, (j*45) + hudOffSetY,towerTexture.Width,towerTexture.Height), Color.White);
+                            break;
+                    }
+                }
+            }
+
+            towers.ForEach(delegate(Tower tower)
+                {
+                    List<Vector2> bulletPositions = tower.getBulletPositions();
+
+                    bulletPositions.ForEach(delegate(Vector2 pos)
+                    {
+                        spriteBatch.Draw(bulletTexture, pos, Color.White);
+                    });
+                });
+
+            foreach(Enemy enemy in enemies)
+            {
+                if (enemy != null)
+                {
+                    spriteBatch.Draw(basicEnemyTexture, enemy.Position(), Color.White);
+                }
+            }
 
             spriteBatch.End();
 
@@ -261,5 +422,13 @@ namespace GameStateManagementSample
 
 
         #endregion
+
+
+        private void cursorFollowMouse()
+        {
+            mouse = Mouse.GetState();
+            cursorRect.X = mouse.X;
+            cursorRect.Y = mouse.Y;
+        }
     }
 }

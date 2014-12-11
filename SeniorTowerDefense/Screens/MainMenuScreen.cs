@@ -11,7 +11,7 @@
 using Microsoft.Xna.Framework;
 #endregion
 
-namespace GameStateManagementSample
+namespace SeniorTowerDefense
 {
     /// <summary>
     /// The main menu screen is the first thing displayed when the game starts up.
@@ -25,10 +25,11 @@ namespace GameStateManagementSample
         /// Constructor fills in the menu contents.
         /// </summary>
         public MainMenuScreen()
-            : base("Main Menu")
+            : base("Tower Defense")
         {
             // Create our menu entries.
             MenuEntry playGameMenuEntry = new MenuEntry("Play Game");
+            MenuEntry helpMenuEntry = new MenuEntry("HELP, pls");
             MenuEntry optionsMenuEntry = new MenuEntry("Options");
             MenuEntry exitMenuEntry = new MenuEntry("Exit");
 
@@ -39,6 +40,7 @@ namespace GameStateManagementSample
 
             // Add entries to the menu.
             MenuEntries.Add(playGameMenuEntry);
+            MenuEntries.Add(helpMenuEntry);
             MenuEntries.Add(optionsMenuEntry);
             MenuEntries.Add(exitMenuEntry);
         }
@@ -54,8 +56,7 @@ namespace GameStateManagementSample
         /// </summary>
         void PlayGameMenuEntrySelected(object sender, PlayerIndexEventArgs e)
         {
-            LoadingScreen.Load(ScreenManager, true, e.PlayerIndex,
-                               new GameplayScreen());
+            ScreenManager.AddScreen(new GameSetupScreen(), e.PlayerIndex);
         }
 
 
@@ -69,11 +70,11 @@ namespace GameStateManagementSample
 
 
         /// <summary>
-        /// When the user cancels the main menu, ask if they want to exit the sample.
+        /// When the user cancels the main menu, ask if they want to exit
         /// </summary>
         protected override void OnCancel(PlayerIndex playerIndex)
         {
-            const string message = "Are you sure you want to exit this sample?";
+            const string message = "Are you sure?";
 
             MessageBoxScreen confirmExitMessageBox = new MessageBoxScreen(message);
 
