@@ -47,7 +47,7 @@ namespace SeniorTowerDefense
                 
                 if (backgroundDrawn)
                 {
-                    Thread.Sleep(3000);
+                    Thread.Sleep(1000);
                     ScreenManager.AddScreen(new BackgroundScreen(), null);
                     ScreenManager.AddScreen(new MainMenuScreen(), null);
                   //  LoadingScreen.Load(ScreenManager, true, null,

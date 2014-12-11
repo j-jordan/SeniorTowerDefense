@@ -15,6 +15,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using GameStateManagement;
+using System.Collections.Generic;
 #endregion
 
 namespace SeniorTowerDefense
@@ -30,6 +31,19 @@ namespace SeniorTowerDefense
 
         ContentManager content;
         SpriteFont gameFont;
+        SpriteFont hudFont;
+
+        //Game flags
+        bool enemiesAlive = false;
+
+        GridWorld gridWorld;
+
+        int healthText = 100;
+        int moneyText = 1000;    
+
+        //offsets
+        int hudOffSetX = 6;
+        int hudOffSetY = 110;
 
         // Cursor
         Texture2D cursor;
@@ -40,11 +54,35 @@ namespace SeniorTowerDefense
         MouseState oldMouse;
 
         //Enemies        
-        Enemy[] enemies;
+        List<Enemy> enemies;
         int enemyCount;
         TimeSpan enemySpawnTime = new TimeSpan(0, 0, 1);
         TimeSpan countTime;
         Texture2D basicEnemyTexture;
+
+        //Heads Up Display
+        Texture2D hudTexture;
+        Rectangle hudRect;
+
+        //Background
+        Texture2D mapTexture;
+        Rectangle mapRectangle;
+
+        //Next round button
+        Texture2D nextButtonTexture;
+        Rectangle nextButtonRect;
+
+        //Grid Box rekt
+        Texture2D gridBoxText;
+        Vector2 gridBoxPos;
+
+        //Turret
+        List<Tower> towers;
+        Texture2D towerTexture;
+        Rectangle towerRect;
+        Texture2D bulletTexture;
+
+        int round;
 
         Random random = new Random();
 
@@ -66,10 +104,17 @@ namespace SeniorTowerDefense
             TransitionOffTime = TimeSpan.FromSeconds(0.5);
 
             cursorRect = new Rectangle(0, 0, 15, 15);
-            
-            //Enemies
-            enemies = new Enemy[100];
+            hudRect = new Rectangle(0, 0, 1280, 720);
+            nextButtonRect = new Rectangle(1200, 640, 69, 72);
+            mapRectangle = new Rectangle(hudOffSetX, hudOffSetY, 1280-hudOffSetX, 720 - hudOffSetY);
+            gridWorld = new GridWorld();
 
+            //Towers
+            towers = new List<Tower>(100);
+
+            //Enemies
+            enemies = new List<Enemy>(100);            
+            round = 0;
 
             pauseAction = new InputAction(
                 new Buttons[] { Buttons.Start, Buttons.Back },
@@ -90,9 +135,17 @@ namespace SeniorTowerDefense
                     content = new ContentManager(ScreenManager.Game.Services, "Content");
 
                 gameFont = content.Load<SpriteFont>("gamefont");
+                hudFont = content.Load<SpriteFont>("HUD_FONT");
+                
                 cursor = content.Load<Texture2D>("cursor");
-                basicEnemyTexture = content.Load<Texture2D>("basicEnemy");
-               
+                basicEnemyTexture = content.Load<Texture2D>("Minion");
+                towerTexture = content.Load<Texture2D>("Kanye Turret"); 
+                hudTexture = content.Load<Texture2D>("HUD");
+                nextButtonTexture = content.Load<Texture2D>("Next");
+                mapTexture = content.Load<Texture2D>("Map");
+                gridBoxText = content.Load<Texture2D>("Grid space");
+                bulletTexture = content.Load<Texture2D>("Bullet");
+
                 ScreenManager.Game.ResetElapsedTime();
             }
 
@@ -139,29 +192,60 @@ namespace SeniorTowerDefense
             if (IsActive)
             {
                 countTime += gameTime.ElapsedGameTime;
-
-                if (countTime > enemySpawnTime)
-                {
-                    countTime = TimeSpan.Zero; 
-                    
-                    if(enemyCount < 100)
-                    {
-                        Enemy badGuy = new Enemy(new Vector2(100, 100), new Vector2(500, 500));
-                        enemies[enemyCount] = badGuy;
-                        enemyCount++;
-                    }
-                }
-
-                foreach(Enemy enemy in enemies)
-                {
-                    if(enemy != null)
-                    {
-                        enemy.moveTowardsDestination();
-                    }
-                }
+                updateEnemies(gameTime);
+                highlightGridAroundMouse();
+                updateTowers();
             }
         }
 
+        private void updateTowers()
+        {
+            towers.ForEach(delegate(Tower tower)
+                {
+                   
+                });
+        }
+
+        private void updateEnemies(GameTime gameTime)
+        {
+            if (countTime > enemySpawnTime)
+            {
+                countTime = TimeSpan.Zero; 
+                    
+                if(enemyCount < (round * 5))
+                {
+                    Enemy badGuy = new Enemy(new Vector2(gridWorld.getMapSource().X * 45 + hudOffSetX, gridWorld.getMapSource().Y * 45 + hudOffSetY),
+                        new Vector2(gridWorld.getMapDestination().X * 45 + hudOffSetX, gridWorld.getMapDestination().Y * 45 + hudOffSetY));
+                    enemies.Add(badGuy);
+                    enemyCount++;
+                    enemiesAlive = true;
+                }
+            }
+
+            enemies.ForEach(delegate(Enemy enemy)
+            {
+                if(enemy != null)
+                {
+                    enemy.moveTowardsDestination();      //ENEMY MOVES
+
+                    towers.ForEach(delegate(Tower t)     // TOWERS SHOOT
+                    {
+                        t.shootBullet(enemy.Position(), gameTime); 
+                        t.updateBullets();
+                    });
+                }
+                if (enemy.reachedDestination())
+                {
+                    enemies.Remove(enemy);
+                    healthText -= 20;
+                }
+            });
+
+            if(enemies.Count == 0)
+            {
+                enemiesAlive = false;
+            }
+        }
 
         /// <summary>
         /// Lets the game respond to player input. Unlike the Update method,
@@ -177,6 +261,7 @@ namespace SeniorTowerDefense
 
             KeyboardState keyboardState = input.CurrentKeyboardStates[playerIndex];
             GamePadState gamePadState = input.CurrentGamePadStates[playerIndex];
+            
 
             // The game pauses either if the user presses the pause button, or if
             // they unplug the active gamepad. This requires us to keep track of
@@ -194,6 +279,63 @@ namespace SeniorTowerDefense
             {
                 cursorFollowMouse();
             }
+            if(mouse.LeftButton == ButtonState.Released  && oldMouse.LeftButton == ButtonState.Pressed && nextButtonRect.Contains(mouse.X, mouse.Y) && !enemiesAlive)
+            {
+                round++;
+            }
+            oldMouse = mouse;            
+            mouse = Mouse.GetState();
+
+        }
+
+        /// <summary>
+        ///  Check the nearest grid position at the current coordinates
+        /// </summary>
+        public Vector2 checkMouseGridPosition()
+        {
+            for (int i = hudOffSetX; i < 1280-hudOffSetX; i++)
+            {
+                for(int j = hudOffSetY; j <720-hudOffSetX ; j++)
+                {
+                    if(mouse.X >= i && mouse.X <= i + 45 && mouse.Y >= j && mouse.Y <= j +45)
+                    {
+                        int Xpos; //x point of the square with rounding
+                        int Ypos; //y ''
+
+                        Xpos = (i / 45);
+                        Ypos = (j / 45);
+
+                        if (Xpos < 28 && Xpos > -1 && Ypos < 13 && Ypos > -1)
+                        {
+                            return new Vector2(Xpos, Ypos);
+                        }
+                    }                    
+                }
+            }
+            
+            return new Vector2(-42, -42);
+        }
+
+        /// <summary>
+        ///     Highlights the grid square around the mouse
+        /// </summary>
+        public void highlightGridAroundMouse()
+        {
+            gridBoxPos = checkMouseGridPosition();
+    
+            oldMouse = mouse;      
+            mouse = Mouse.GetState();       
+
+            if (mouse.LeftButton == ButtonState.Released && oldMouse.LeftButton == ButtonState.Pressed && moneyText >= 200 && !enemiesAlive)
+            {
+                if(gridWorld.setTowerPosition((int)gridBoxPos.X, (int)gridBoxPos.Y))
+                {
+                    moneyText -= 200;
+                    towers.Add(new Tower(gridBoxPos));
+                }
+            }
+            gridBoxPos.X = gridBoxPos.X * 45 + hudOffSetX;
+            gridBoxPos.Y = gridBoxPos.Y * 45 + hudOffSetY;
         }
 
         /// <summary>
@@ -210,7 +352,54 @@ namespace SeniorTowerDefense
 
             spriteBatch.Begin();
 
+            spriteBatch.Draw(mapTexture, mapRectangle, Color.White); 
+            
+            spriteBatch.Draw(gridBoxText, gridBoxPos, Color.White);
+
+            spriteBatch.Draw(hudTexture, hudRect, Color.White);
+
+            spriteBatch.DrawString(hudFont, healthText +"", new Vector2(160,20), Color.Red);
+
+            spriteBatch.DrawString(hudFont, "$" + moneyText, new Vector2(470, 20), Color.Black);
+
+            spriteBatch.DrawString(hudFont, "ROUND: " + round, new Vector2(800, 20), Color.Black);
+
+            spriteBatch.Draw(nextButtonTexture, nextButtonRect, Color.White);           
+
             spriteBatch.Draw(cursor, cursorRect, Color.White);
+
+            for (int i = 0; i < gridWorld.getMapGirth(); i++)
+            {
+                for (int j = 0; j < gridWorld.getMapHeight(); j++)
+                {
+                    switch(gridWorld.getMapEntity(i,j))
+                    {
+                        case (GridWorld.MapEntity.Destination):
+                            break;
+                        case (GridWorld.MapEntity.Empty):
+                            break;
+                        case (GridWorld.MapEntity.Enemy):
+                            break;
+                        case (GridWorld.MapEntity.Obstical):
+                            break;
+                        case (GridWorld.MapEntity.Source):
+                            break;
+                        case (GridWorld.MapEntity.Tower):
+                            spriteBatch.Draw(towerTexture, new Rectangle((i*45) + hudOffSetX, (j*45) + hudOffSetY,towerTexture.Width,towerTexture.Height), Color.White);
+                            break;
+                    }
+                }
+            }
+
+            towers.ForEach(delegate(Tower tower)
+                {
+                    List<Vector2> bulletPositions = tower.getBulletPositions();
+
+                    bulletPositions.ForEach(delegate(Vector2 pos)
+                    {
+                        spriteBatch.Draw(bulletTexture, pos, Color.White);
+                    });
+                });
 
             foreach(Enemy enemy in enemies)
             {

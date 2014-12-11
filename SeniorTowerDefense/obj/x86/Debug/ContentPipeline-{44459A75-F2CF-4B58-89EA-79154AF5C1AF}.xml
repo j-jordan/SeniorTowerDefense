@@ -73,6 +73,78 @@
       <Output>E:\Users\Grujo\Documents\Senior Game Class\SeniorTowerDefense\SeniorTowerDefense\bin\x86\Debug\Content\basicEnemy.xnb</Output>
       <Time>2014-11-11T18:27:14.4287755-06:00</Time>
     </Item>
+    <Item>
+      <Source>HUD.png</Source>
+      <Name>HUD</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\Users\Grujo\Documents\Senior Game Class\SeniorTowerDefense\SeniorTowerDefense\bin\x86\Debug\Content\HUD.xnb</Output>
+      <Time>2014-12-08T14:49:45.6213267-06:00</Time>
+    </Item>
+    <Item>
+      <Source>Minion.png</Source>
+      <Name>Minion</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\Users\Grujo\Documents\Senior Game Class\SeniorTowerDefense\SeniorTowerDefense\bin\x86\Debug\Content\Minion.xnb</Output>
+      <Time>2014-12-08T14:49:45.6193138-06:00</Time>
+    </Item>
+    <Item>
+      <Source>Next.png</Source>
+      <Name>Next</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\Users\Grujo\Documents\Senior Game Class\SeniorTowerDefense\SeniorTowerDefense\bin\x86\Debug\Content\Next.xnb</Output>
+      <Time>2014-12-08T14:49:45.6223147-06:00</Time>
+    </Item>
+    <Item>
+      <Source>Grid space.png</Source>
+      <Name>Grid space</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\Users\Grujo\Documents\Senior Game Class\SeniorTowerDefense\SeniorTowerDefense\bin\x86\Debug\Content\Grid space.xnb</Output>
+      <Time>2014-12-08T16:24:02.9289743-06:00</Time>
+    </Item>
+    <Item>
+      <Source>Kanye Turret.png</Source>
+      <Name>Kanye Turret</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\Users\Grujo\Documents\Senior Game Class\SeniorTowerDefense\SeniorTowerDefense\bin\x86\Debug\Content\Kanye Turret.xnb</Output>
+      <Time>2014-12-08T17:14:39.4040261-06:00</Time>
+    </Item>
+    <Item>
+      <Source>Map.png</Source>
+      <Name>Map</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\Users\Grujo\Documents\Senior Game Class\SeniorTowerDefense\SeniorTowerDefense\bin\x86\Debug\Content\Map.xnb</Output>
+      <Time>2014-12-08T17:10:54.4494744-06:00</Time>
+    </Item>
+    <Item>
+      <Source>HUD_FONT.spritefont</Source>
+      <Name>HUD_FONT</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\Users\Grujo\Documents\Senior Game Class\SeniorTowerDefense\SeniorTowerDefense\bin\x86\Debug\Content\HUD_FONT.xnb</Output>
+      <Time>2014-12-08T18:24:04.6429756-06:00</Time>
+    </Item>
+    <Item>
+      <Source>Bullet.png</Source>
+      <Name>Bullet</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\Users\Grujo\Documents\Senior Game Class\SeniorTowerDefense\SeniorTowerDefense\bin\x86\Debug\Content\Bullet.xnb</Output>
+      <Time>2014-12-11T01:50:37.1003652-06:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <ContentProjectGUID>{44459A75-F2CF-4B58-89EA-79154AF5C1AF}</ContentProjectGUID>

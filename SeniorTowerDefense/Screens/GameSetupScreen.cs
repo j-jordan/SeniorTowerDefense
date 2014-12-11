@@ -71,9 +71,7 @@ namespace SeniorTowerDefense
             pauseAction = new InputAction(
                 new Buttons[] { Buttons.Start, Buttons.Back },
                 new Keys[] { Keys.Escape },
-                true);
-
-          
+                true);          
         }
 
         void playMenuEntry_Selected(object sender, PlayerIndexEventArgs e)

@@ -67,6 +67,7 @@
   <ItemGroup>
     <Compile Include="Game Objects\Enemy.cs" />
     <Compile Include="Game Objects\GridWorld.cs" />
+    <Compile Include="Game Objects\Tower.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
