@@ -14,6 +14,7 @@ namespace SeniorTowerDefense
         private static readonly TimeSpan reloadTime = TimeSpan.FromSeconds(.1);
         private TimeSpan lastShootTime;
         Bullet bulletToShoot;
+        private Vector2 towerPos;
 
         public List<Vector2> getBulletPositions() 
         {
@@ -37,23 +38,14 @@ namespace SeniorTowerDefense
             {
                 Bullet b = new Bullet();
                 b.isActive = false;
-                b.velocity = new Vector2(10f, 10f);
-                b.position = new Vector2(gP.X * 45 + 6, gP.Y * 45 + 110);
+                b.velocity = new Vector2(30f, 30f);
+                towerPos = b.position = new Vector2(gP.X * 45 + 6, gP.Y * 45 + 110);
 
                 bullets.Add(b);
             }
 
             gridPosition = gP;
         }
-
-        /*struct bullet
-        {
-            public bool isActive;
-
-            public Vector2 position;
-            public Vector2 velocity;
-            public Vector2 destination; 
-        }*/
 
         public Vector2 shootBullet(Vector2 destination, GameTime gameTime)
         {            
@@ -82,10 +74,20 @@ namespace SeniorTowerDefense
                 bulletToShoot.destination = destination;
                 updateBullet(bulletToShoot);
 
-                //if our bullet hit his target
+                //if our bullet hit his target, set his and all other bullets with the same destination to inactive
                 if(checkForCollision(bulletToShoot))
                 {
-                    bullets.Remove(bulletToShoot);
+                    bulletToShoot.isActive = false;
+
+                    bullets.ForEach(delegate(Bullet b)
+                    {
+                        if (b.destination == bulletToShoot.destination)
+                        {
+                            b.isActive = false;
+                            b.position = towerPos;                            
+                        }
+                    });
+
                     return destination;
                 }
             }
@@ -101,7 +103,7 @@ namespace SeniorTowerDefense
             }
             else if (b.position.X > b.destination.X)
             {
-                b.position.X -= 30;
+                b.position.X -= b.velocity.X;
             }
                     
             //Y Values
@@ -117,7 +119,8 @@ namespace SeniorTowerDefense
 
         public bool checkForCollision(Bullet bullet)
         {
-            if(bullet.position == bullet.destination)
+            if(Math.Abs(bullet.position.X - bullet.destination.X) <= 5 && Math.Abs(bullet.position.Y - bullet.destination.Y) <= 5 || 
+                bullet.position.X - bullet.destination.X < 30 && bullet.position.Y - bullet.destination.Y < 30)
             {
                 //DIRECT HIT
                 return true;

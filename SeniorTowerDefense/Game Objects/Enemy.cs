@@ -22,7 +22,7 @@ namespace SeniorTowerDefense
         public Enemy()
         {
             velocity = randy.Next(5) + 1;
-            health = 100;
+            health = 200;
 
             isTargetable = false;
         }

@@ -56,7 +56,7 @@ namespace SeniorTowerDefense
         //Enemies        
         List<Enemy> enemies;
         int enemyCount;
-        TimeSpan enemySpawnTime = new TimeSpan(0, 0, 1);
+        TimeSpan enemySpawnTime = TimeSpan.FromMilliseconds(420);
         TimeSpan countTime;
         Texture2D basicEnemyTexture;
 
@@ -85,6 +85,7 @@ namespace SeniorTowerDefense
         int round;
 
         Random random = new Random();
+        public bool gameOver = false;
 
         float pauseAlpha;
 
@@ -120,7 +121,6 @@ namespace SeniorTowerDefense
                 new Buttons[] { Buttons.Start, Buttons.Back },
                 new Keys[] { Keys.Escape },
                 true);
-
         }
 
 
@@ -196,7 +196,7 @@ namespace SeniorTowerDefense
                 highlightGridAroundMouse();
                 if(healthText <= 0)
                 {
-                    //TODO: GAME OVER
+                    gameOver = true;
                 }
             }
         }
@@ -262,6 +262,7 @@ namespace SeniorTowerDefense
                                 if(enemy.health <= 0)
                                 {
                                     enemies.Remove(enemy);
+                                    moneyText += 200;
                                 }
                             }
                         });
@@ -311,10 +312,10 @@ namespace SeniorTowerDefense
             if(mouse.LeftButton == ButtonState.Released  && oldMouse.LeftButton == ButtonState.Pressed && nextButtonRect.Contains(mouse.X, mouse.Y) && !enemiesAlive)
             {
                 round++;
+                enemyCount = 0;
             }
             oldMouse = mouse;            
             mouse = Mouse.GetState();
-
         }
 
         /// <summary>
@@ -391,7 +392,12 @@ namespace SeniorTowerDefense
 
             spriteBatch.DrawString(hudFont, "$" + moneyText, new Vector2(470, 20), Color.Black);
 
-            spriteBatch.DrawString(hudFont, "ROUND: " + round, new Vector2(800, 20), Color.Black);
+            if (enemiesAlive)
+                spriteBatch.DrawString(hudFont, "ROUND: " + round, new Vector2(800, 20), Color.Black);
+            else if(gameOver)
+                spriteBatch.DrawString(hudFont, "GAME OVER", new Vector2(800, 20), Color.Black);
+            else
+                spriteBatch.DrawString(hudFont, "ROUND WON", new Vector2(800, 20), Color.Black);
 
             spriteBatch.Draw(nextButtonTexture, nextButtonRect, Color.White);           
 
@@ -420,15 +426,18 @@ namespace SeniorTowerDefense
                 }
             }
 
-            towers.ForEach(delegate(Tower tower)
+            if(enemiesAlive)
             {
-                List<Vector2> bulletPositions = tower.getBulletPositions();
-
-                bulletPositions.ForEach(delegate(Vector2 pos)
+                towers.ForEach(delegate(Tower tower)
                 {
-                    spriteBatch.Draw(bulletTexture, pos, Color.White);
+                    List<Vector2> bulletPositions = tower.getBulletPositions();
+
+                    bulletPositions.ForEach(delegate(Vector2 pos)
+                    {
+                        spriteBatch.Draw(bulletTexture, pos, Color.White);
+                    });
                 });
-            });
+            }            
 
             foreach(Enemy enemy in enemies)
             {
